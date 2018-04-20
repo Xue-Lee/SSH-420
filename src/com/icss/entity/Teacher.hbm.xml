@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-19 10:33:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.icss.entity.Teacher" table="TEACHER">
+        <id name="tid" type="java.lang.String">
+            <column name="TID" />
+            <generator class="assigned" />
+        </id>
+        <property name="tname" type="java.lang.String">
+            <column name="TNAME" />
+        </property>
+        <many-to-one name="dept" class="com.icss.entity.Depart" fetch="join" cascade="all">
+            <column name="dept" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

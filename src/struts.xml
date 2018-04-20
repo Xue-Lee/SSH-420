@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+
+<struts>
+    <package name="test" namespace="/" extends="struts-default">
+    	<default-class-ref class="testAction"></default-class-ref>
+    	<action name="displayDept" method="displayDept">
+    		<result name="success">show.jsp</result>
+    	</action>
+    	<action name="displayDeptAll" method="displayDeptAll">
+    		<result name="success">show.jsp</result>
+    	</action>
+    </package>
+    
+    <package name="teacher" namespace="/" extends="struts-default">
+    <default-class-ref class="com.icss.action.MyAction"></default-class-ref>
+    <action name="showDep" >
+    	<result name="success" >show.jsp</result>
+    </action>
+    <action name="*"  method="{1}">
+    	<result name="success">show.jsp</result>
+    	<result name="login">login.jsp</result>
+    </action>
+     <action name="book"  method="book">
+    	<result name="success">show.jsp</result>
+    </action>
+    <action name="test1"  method="test1">
+    	<result name="success">show.jsp</result>
+    </action>
+    </package>
+ </struts>

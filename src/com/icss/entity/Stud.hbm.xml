@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-19 9:37:55 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.icss.entity.Stud" table="STUD">
+        <id name="stuId" type="java.lang.String">
+            <column name="STUID" />
+            <generator class="assigned" />
+        </id>
+        <property name="stuName" type="java.lang.String">
+            <column name="STUNAME" />
+        </property>
+        <property name="sex" type="java.lang.String">
+            <column name="SEX" />
+        </property>
+        <property name="birthday" type="java.sql.Timestamp">
+            <column name="BIRTHDAY" />
+        </property>
+        <property name="tel" type="java.lang.String">
+            <column name="TEL" />
+        </property>
+        <property name="team" type="java.lang.String">
+            <column name="TEAM" />
+        </property>
+        <property name="grade" type="java.lang.Integer">
+            <column name="GRADE" />
+        </property>
+        <property name="age" type="java.lang.Integer">
+            <column name="AGE" />
+        </property>
+        <set name="courseSet" table="s_c" inverse="false" lazy="true" cascade="all">
+            <key>
+                <column name="STUID" />
+            </key>
+            <many-to-many class="com.icss.entity.Course" column="cid"/>
+        </set>
+    </class>
+</hibernate-mapping>

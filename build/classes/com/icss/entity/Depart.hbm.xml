@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-4-19 10:33:36 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.icss.entity.Depart" table="DEPART">
+        <id name="did" type="java.lang.String">
+            <column name="DID" />
+            <generator class="assigned" />
+        </id>
+        <property name="dname" type="java.lang.String">
+            <column name="DNAME" />
+        </property>
+        <set name="teacherSet" table="TEACHER" inverse="false" lazy="true">
+            <key>
+                <column name="dept" />
+            </key>
+            <one-to-many class="com.icss.entity.Teacher" />
+        </set>
+    </class>
+</hibernate-mapping>

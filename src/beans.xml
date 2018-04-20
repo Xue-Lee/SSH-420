@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd ">
+<!-- 	<bean id="dao" class="com.icss.dao.CommonsDao"></bean> -->	
+	<bean id="book1" class="com.icss.entity.Book">
+	<property name="title" value="三国演义"></property>
+	<property name="author" value="罗贯中"></property>
+	<property name="price" value="99"></property>
+	</bean>
+	<bean id="book2" class="com.icss.entity.Book">
+		<constructor-arg name="title" value="西游记"></constructor-arg>
+		<constructor-arg name="author" value="吴承恩"/>
+		<constructor-arg name="price" value="88"/>
+	</bean>
+	<bean id="stone" class="com.icss.entity.StoneAxe"></bean>
+	<bean id="steel" class="com.icss.entity.SteelAxe"></bean>
+	<bean id="amc" class="com.icss.entity.American">
+		<property name="name" value="trump"></property>
+		<property name="axe" ref="steel"></property>
+	</bean>
+</beans>

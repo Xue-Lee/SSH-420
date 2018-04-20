@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.0.xsd ">
+	
+	<bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource"	destroy-method="close">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/hbm2018?characterEncoding=utf8"/>
+		<property name="user" value="root"/>
+		<property name="password" value="root"/>
+		<property name="maxPoolSize" value="10"/>
+		<property name="minPoolSize" value="1"/>
+		<property name="initialPoolSize" value="1"/>
+		<property name="maxIdleTime" value="20"/>
+	</bean>
+	<bean id="sf" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<!-- 依赖注入数据源，注入正是上面定义的dataSource -->
+		<property name="dataSource" ref="ds"/>
+		<!-- mappingResouces属性用来列出全部映射文件 List-->
+		<property name="mappingResources">
+			<list><!-- 以下用来列出Hibernate映射文件 -->					
+			<value>com/icss/entity/Depart.hbm.xml</value>
+			<value>com/icss/entity/Teacher.hbm.xml</value>
+			</list>
+		</property>
+		<!-- 定义Hibernate的SessionFactory的属性 -->
+		<property name="hibernateProperties"><!-- 配置Hibernate属性Map -->
+			<value>
+			hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+			hibernate.hbm2ddl.auto=update
+			hibernate.show_sql=true
+			hibernate.format_sql=true
+			</value>
+		</property>
+	</bean>
+	
+	
+	<bean id="dao1" class="com.icss.dao.CommonsDao"></bean>
+	<bean id="dao2" class="com.icss.dao.DepartDao">
+		<property name="sessionFactory" ref="sf"></property>
+	</bean>
+	<bean id="testAction" class="com.icss.action.TestAction">
+		<property name="dao" ref="dao1"></property>
+		<property name="departDao" ref="dao2"></property>
+	</bean>
+</beans>
